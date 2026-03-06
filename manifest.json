@@ -1,0 +1,13 @@
+{
+  "id": "demo.watch-widget",
+  "name": "Watch Widget",
+  "version": "1.0.0",
+  "description": "A stylish analog/digital watch widget for your Xeneon dashboard",
+  "author": "Xeneon Team",
+  "main": "dist/index.js",
+  "platforms": ["win32", "darwin", "linux"],
+  "keywords": ["watch", "clock", "time", "analog", "digital", "widget"],
+  "license": "MIT",
+  "repository": "https://github.com/xeneon/demo-watch-widget",
+  "permissions": []
+}
