@@ -21,7 +21,7 @@ export const DigitalClock: React.FC<DigitalClockProps> = ({
   dateString,
   accentColor,
 }) => {
-  const accent = accentColor || 'var(--xeneon-accent, #3b82f6)';
+  const accent = accentColor || '#3b82f6';
 
   let displayHours = hours;
   let period = '';
@@ -32,17 +32,45 @@ export const DigitalClock: React.FC<DigitalClockProps> = ({
 
   const pad = (n: number) => String(n).padStart(2, '0');
 
-  const timeStr = showSeconds
-    ? `${pad(displayHours)}:${pad(minutes)}:${pad(seconds)}`
-    : `${pad(displayHours)}:${pad(minutes)}`;
+  const glowStyle = {
+    textShadow: `0 0 10px ${accent}, 0 0 20px ${accent}, 0 0 40px ${accent}80, 0 0 80px ${accent}40`,
+    color: accent,
+  };
+
+  const dimGlowStyle = {
+    textShadow: `0 0 6px ${accent}80, 0 0 12px ${accent}40`,
+    color: accent,
+  };
 
   return (
     <div className="watch-digital">
-      <div className="watch-digital-time" style={{ color: accent }}>
-        <span className="watch-digital-digits">{timeStr}</span>
-        {!use24Hour && <span className="watch-digital-period">{period}</span>}
+      <div className="watch-digital-time">
+        <span className="watch-digital-digits" style={glowStyle}>
+          {pad(displayHours)}
+        </span>
+        <span className="watch-digital-colon watch-digital-colon-blink" style={glowStyle}>
+          :
+        </span>
+        <span className="watch-digital-digits" style={glowStyle}>
+          {pad(minutes)}
+        </span>
+        {showSeconds && (
+          <>
+            <span className="watch-digital-colon" style={dimGlowStyle}>:</span>
+            <span className="watch-digital-seconds" style={dimGlowStyle}>
+              {pad(seconds)}
+            </span>
+          </>
+        )}
+        {!use24Hour && (
+          <span className="watch-digital-period" style={dimGlowStyle}>{period}</span>
+        )}
       </div>
-      {showDate && <div className="watch-digital-date">{dateString}</div>}
+      {showDate && (
+        <div className="watch-digital-date" style={dimGlowStyle}>
+          {dateString}
+        </div>
+      )}
     </div>
   );
 };

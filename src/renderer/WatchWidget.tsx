@@ -28,9 +28,19 @@ function getTimeParts(timezone: string) {
     });
     const parts = formatter.formatToParts(now);
     const get = (type: string) => Number(parts.find((p) => p.type === type)?.value ?? 0);
-    return { hours: get('hour'), minutes: get('minute'), seconds: get('second') };
+    return {
+      hours: get('hour'),
+      minutes: get('minute'),
+      seconds: get('second'),
+      ms: now.getMilliseconds(),
+    };
   }
-  return { hours: now.getHours(), minutes: now.getMinutes(), seconds: now.getSeconds() };
+  return {
+    hours: now.getHours(),
+    minutes: now.getMinutes(),
+    seconds: now.getSeconds(),
+    ms: now.getMilliseconds(),
+  };
 }
 
 function getDateString(timezone: string): string {
@@ -67,6 +77,8 @@ export const WatchWidget: React.FC<WatchWidgetProps> = ({ config }) => {
           minutes={time.minutes}
           seconds={time.seconds}
           showSeconds={showSeconds}
+          showDate={showDate}
+          dateString={dateStr}
           accentColor={accentColor}
         />
       ) : (

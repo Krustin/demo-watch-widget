@@ -6,48 +6,88 @@
   height: 100%;
   color: var(--xeneon-text, #e2e8f0);
   font-family: system-ui, -apple-system, sans-serif;
+  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.4) 0%, transparent 70%);
 }
 
-/* Analog */
+/* ── Analog ── */
+
 .watch-analog {
   width: 100%;
   height: 100%;
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 220px;
+  max-height: 220px;
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.15));
 }
 
-.watch-seconds-hand {
-  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-}
+/* ── Digital ── */
 
-/* Digital */
 .watch-digital {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  padding: 8px 16px;
 }
 
 .watch-digital-time {
   display: flex;
   align-items: baseline;
-  gap: 4px;
 }
 
 .watch-digital-digits {
-  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-  font-size: 2.5rem;
-  font-weight: 600;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+  font-size: 3rem;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  line-height: 1;
+}
+
+.watch-digital-colon {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  margin: 0 2px;
+}
+
+.watch-digital-colon-blink {
+  animation: colon-blink 1s step-end infinite;
+}
+
+.watch-digital-seconds {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+  font-size: 1.8rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  opacity: 0.7;
+  margin-left: 2px;
 }
 
 .watch-digital-period {
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
   font-size: 1rem;
-  opacity: 0.7;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-left: 6px;
+  opacity: 0.6;
 }
 
 .watch-digital-date {
-  font-size: 0.85rem;
-  opacity: 0.6;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-top: 2px;
+}
+
+/* ── Animations ── */
+
+@keyframes colon-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0.3; }
 }
